@@ -2,7 +2,7 @@ import express from 'express';
 const app = express();
 
 app.get('/', function (req, res) {
-  res.send('ts-node-18-express');
+  res.send('twilio-pay-connector-stub');
 });
 
-app.listen(3000);
+app.listen(8888);
