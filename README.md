@@ -14,4 +14,5 @@ CVV: `333`
 - Uses a Twilio-purchased [telephone number](https://console.twilio.com/us1/develop/phone-numbers/manage/incoming) to receive the call
 - A [TwiML Bin](https://console.twilio.com/us1/develop/twiml-bins/twiml-bins) to handle the incoming call and forward the request to the connector
 - The Twilio [Generic Pay Connector](https://console.twilio.com/us1/develop/add-ons/catalog) ([docs](https://www.twilio.com/docs/voice/twiml/pay/generic-pay-connector))
+- This repo, as a stub for the payment gateway (accessed on my local via ngrok)
 - A Twilio [serverless function](https://console.twilio.com/us1/develop/functions/services) to handle the response from the Generic Pay Connector
