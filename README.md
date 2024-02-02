@@ -21,52 +21,20 @@ Twilio Serverless Function:
 
 ```javascript
 exports.handler = function (context, event, callback) {
+  // Helper just to clean/filter the response
+  const getParams = (target, startsWithVal = 'PayConnector_') =>
+    Object.keys(target).reduce((acc, key) => {
+      if (key.startsWith(startsWithVal)) {
+        acc[key.replace(startsWithVal, '')] = target[key];
+      }
+      return acc;
+    }, {});
+
   let twiml = new Twilio.twiml.VoiceResponse();
+  const myParams = getParams(event);
 
-  // Just clearing out the request object to make it easier to read when logged
-  const {
-    AccountSid,
-    ApiVersion,
-    Direction,
-    Called,
-    CalledCity,
-    CalledState,
-    CalledZip,
-    CalledCountry,
-    Caller,
-    CallerCity,
-    CallerState,
-    CallerZip,
-    CallerCountry,
-    CallSid,
-    CallStatus,
-    ExpirationDate,
-    From,
-    FromCity,
-    FromState,
-    FromZip,
-    FromCountry,
-    PaymentCardNumber,
-    PaymentCardPostalCode,
-    PaymentCardType,
-    PaymentConfirmationCode,
-    PaymentToken,
-    request,
-    Request,
-    Result,
-    SecurityCode,
-    To,
-    ToCountry,
-    ToCity,
-    ToState,
-    ToZip,
-    ...restRequest
-  } = event;
-
-  console.log('============== in /pay ===========');
-  console.log(restRequest);
-  console.log('==================================');
-  console.log('==================================');
+  console.log('============== in /pay with params ===========');
+  console.log(myParams);
   console.log('==================================');
 
   switch (event.Result) {
