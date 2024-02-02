@@ -14,7 +14,13 @@ const respond = (req, res) => {
   console.dir(req.body, { depth: null });
 
   const chargeResponse = {
-    confirmationNumber: uuid(),
+    charge_id: 'ch_abcdef0123456789abcdef0123456789',
+    parameters: {
+      gateway_key_returned_1: 'steve',
+      gateway_key_returned_2: 'gateway_value_returned_2',
+      gateway_key_returned_3: 'gateway_value_returned_3',
+      confirmation_number: uuid(),
+    },
     error_code: null,
     error_message: null,
   };
@@ -22,7 +28,8 @@ const respond = (req, res) => {
   console.log(`==================== Response ====================`);
   console.dir(chargeResponse, { depth: null });
 
-  res.json(chargeResponse);
+  res.setHeader('Content-Type', 'application/json');
+  res.send(chargeResponse);
 };
 
 app.get('/', function (req, res) {
